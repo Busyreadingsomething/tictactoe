@@ -66,6 +66,22 @@ class Board extends React.Component {
     }
   }
 
+  checkCol(col) {
+    let winner = 0;
+    const { board } = this.state;
+
+    for (let row = 0; row < 3; row += 1) {
+      board[col][row] === 'X' ? winner += 1 : winner -= 1;
+    }
+    return this.isWinner(winner);
+  }
+
+  checkCols() {
+    for (let col = 0; col < 3; col += 1) {
+      this.checkCol(col);
+    }
+  }
+
   makeMove(board, row, col) {
     if (board[row][col] === '') {
       const turn = this.state.turn === 'O' ? 'X' : 'O';
