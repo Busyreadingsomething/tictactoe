@@ -33,6 +33,39 @@ class Board extends React.Component {
     return board.map(row => row.map(space => space));
   }
 
+  isWinner(winner) {
+    if (winner === 3) {
+      return 'X';
+    } else if (winner === -3) {
+      return 'O';
+    } else {
+      return false;
+    }
+  }
+
+  checkWinner() {
+
+  }
+
+  checkRow(row) {
+    let winner = 0;
+
+    for (let col = 0; col < 3; col += 1) {
+      row[col] === 'X' ? winner += 1 : winner -= 1;
+    }
+
+    return this.isWinner(winner);
+  }
+
+  checkRows() {
+    for (const row of this.state.board) {
+      const winner = this.checkRow(row);
+      if (winner) {
+        return winner;
+      }
+    }
+  }
+
   makeMove(board, row, col) {
     if (board[row][col] === '') {
       const turn = this.state.turn === 'O' ? 'X' : 'O';
