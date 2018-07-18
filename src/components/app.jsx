@@ -82,6 +82,31 @@ class Board extends React.Component {
     }
   }
 
+  checkMajor() {
+    let winner = 0;
+    const { board } = this.state;
+    let col = 0
+    for (let row = 0; row < 3; row += 1) {
+      board[row][col] === 'X' ? winner += 1 : winner -= 1;
+      col += 1;
+    }
+
+    return this.isWinner(winner);
+  }
+
+  checkMinor() {
+    let winner = 0;
+    const { board } = this.state;
+
+    let col = 2;
+    for (let row = 0; row < 3; row += 1) {
+      baord[row][col] === 'X' ? winner += 1 : winner -= 1;
+      col -= 1;
+    }
+
+    return this.isWinner(winner);
+  }
+
   makeMove(board, row, col) {
     if (board[row][col] === '') {
       const turn = this.state.turn === 'O' ? 'X' : 'O';
