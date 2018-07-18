@@ -3,23 +3,23 @@ const path = require('path');
 module.exports = {
   entry: path.resolve(__dirname, './src/index.jsx'),
   output: {
-    path: path.resolve(__dirname, './public'),
+    path: path.resolve(__dirname, './public/dist'),
     filename: 'bundle.js',
     publicPath: '/',
   },
   module: {
     rules: [
       {
-        rules: /.jsx?$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-        query : {
+        query: {
           presets: ['env', 'react'],
         },
       },
     ],
   },
   resolve: {
-    extensions: ['js', '.jsx', 'json'],
+    extensions: ['.js', '.jsx', '.json'],
   }
 };
